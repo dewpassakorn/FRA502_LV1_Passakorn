@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+
+    
+<!-- xacro define path -->
+    <param name="robot_description" command="xacro --inorder '$(find robot_description)/urdf/dew_ros_robot.xacro'"/>
+
+    <!-- <param name="use_gui" value="False"/> -->
+    <!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/> -->
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+    
+    <!-- RVIS include -->
+    <node name="rviz" pkg="rviz" type="rviz" args= "-d $(find robot_description)/rvis/rvis_setting.rviz"/>
+    
+<!-- GAZEBO create world-->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find robot_gazebo)/world/d_world.world"/>
+        <arg name="paused" value="false"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+        <arg name="recording" value="false"/>
+        <arg name="debug" value="false"/>
+    </include>
+
+<!-- spawn urdf to gazabo-->
+    <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" 
+    args="-urdf -model dew_ros_robot -param robot_description"/>
+    
+</launch>

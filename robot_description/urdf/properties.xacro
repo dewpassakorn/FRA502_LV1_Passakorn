@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="PI" value="3.14159265359"/>
+    <xacro:property name="WHEEL_RADIUS" value="0.08"/>
+
+    <!-- wheel use parametor -->
+    <xacro:property name="U_MAX" value="10.0"/>
+    <xacro:property name="V_MAX" value="20.0"/>
+    <xacro:property name="WHEEL_JOINT_DAMP" value="0.3"/>
+    <xacro:property name="WHEEL_length" value="0.32"/>
+
+
+    <!-- chassis inertia from solidwork-->
+    <xacro:property name="CHASSIS_COM_XYZ" value="-0.0821 0 0"/>
+    <xacro:property name="CHASSIS_M" value="5.50034"/>
+    <xacro:property name="CHASSIS_IXX" value="0.03394893"/>
+    <xacro:property name="CHASSIS_IXY" value="0.0"/>
+    <xacro:property name="CHASSIS_IXZ" value="0.00000299776"/>
+    <xacro:property name="CHASSIS_IYY" value="0.03370971"/>
+    <xacro:property name="CHASSIS_IYZ" value="0.0"/>
+    <xacro:property name="CHASSIS_IZZ" value="0.06178697"/>
+
+    <!-- support wheel inertia from solidwork-->
+    <xacro:property name="S_WHEEL_COM_XYZ" value="0 0.000479 0"/>
+    <xacro:property name="S_WHEEL_M" value="0.05739"/>
+    <xacro:property name="S_WHEEL_IXX" value="0.00001337476"/>
+    <xacro:property name="S_WHEEL_IXY" value="0.0"/>
+    <xacro:property name="S_WHEEL_IXZ" value="0.0"/>
+    <xacro:property name="S_WHEEL_IYY" value="0.00001590104"/>
+    <xacro:property name="S_WHEEL_IYZ" value="0.0"/>
+    <xacro:property name="S_WHEEL_IZZ" value="0.00001337476"/>
+
+    <!-- wheel inertia from solidwork-->
+    <xacro:property name="WHEEL_COM_XYZ" value="0 0 0"/>
+    <xacro:property name="WHEEL_M" value="0.532"/>
+    <xacro:property name="WHEEL_IXX" value="0.0010737912"/>
+    <xacro:property name="WHEEL_IXY" value="0.0"/>
+    <xacro:property name="WHEEL_IXZ" value="0.0"/>
+    <xacro:property name="WHEEL_IYY" value="0.0010737912"/>
+    <xacro:property name="WHEEL_IYZ" value="0.0"/>
+    <xacro:property name="WHEEL_IZZ" value="0.0020081458"/>
+
+</robot>

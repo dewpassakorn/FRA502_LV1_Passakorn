@@ -1,0 +1,34 @@
+Mass properties of support_wheel
+     Configuration: Default
+     Coordinate system: Coordinate System SW
+
+Density = 0.00 grams per cubic millimeter
+
+Mass = 57.39 grams
+
+Volume = 56260.47 cubic millimeters
+
+Surface area = 9389.47  square millimeters
+
+Center of mass: ( millimeters )
+	X = 0.00
+	Y = 4.79
+	Z = 0.00
+
+Principal axes of inertia and principal moments of inertia: ( grams *  square millimeters )
+Taken at the center of mass.
+	 Ix = ( 0.00,  0.00, -1.00)   	Px = 13374.76
+	 Iy = ( 1.00,  0.00,  0.00)   	Py = 13374.76
+	 Iz = ( 0.00, -1.00,  0.00)   	Pz = 15901.04
+
+Moments of inertia: ( grams *  square millimeters )
+Taken at the center of mass and aligned with the output coordinate system.
+	Lxx = 13374.76	Lxy = 0.00	Lxz = 0.00
+	Lyx = 0.00	Lyy = 15901.04	Lyz = 0.00
+	Lzx = 0.00	Lzy = 0.00	Lzz = 13374.76
+
+Moments of inertia: ( grams *  square millimeters )
+Taken at the output coordinate system.
+	Ixx = 14690.46	Ixy = 0.00	Ixz = 0.00
+	Iyx = 0.00	Iyy = 15901.04	Iyz = 0.00
+	Izx = 0.00	Izy = 0.00	Izz = 14690.46

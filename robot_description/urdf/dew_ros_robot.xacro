@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="dew_ros_robot">
+
+    <!--include file dependent -->
+    <xacro:include filename="$(find robot_description)/urdf/properties.xacro"/>
+    <xacro:include filename="$(find robot_description)/urdf/chassis.xacro"/>
+    <xacro:include filename="$(find robot_description)/urdf/wheel.xacro"/>
+    
+
+    <!-- use chassis-->
+    <xacro:chassis/> 
+
+    <!--use left wheel and set parametor -->
+    <xacro:wheel
+    name="left" 
+    traslation="0 ${WHEEL_length /2} 0" 
+    rotation="${PI/2}  0 0"
+    parent="base_link"/>
+
+    <!--use right wheel and set parametor -->
+    <xacro:wheel
+    name="right" 
+    traslation="0 ${-WHEEL_length /2} 0" 
+    rotation="${PI/2}  0 0"
+    parent="base_link"/>
+
+    <xacro:include filename="$(find robot_description)/urdf/config.gazebo"/>
+
+
+
+</robot>

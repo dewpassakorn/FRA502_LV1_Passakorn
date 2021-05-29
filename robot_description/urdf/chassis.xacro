@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_chassis">
+
+    <!-- use parameter form properties.xacro -->
+    <xacro:include filename="$(find robot_description)/urdf/properties.xacro"/>
+
+
+
+    <!-- camera variable -->
+    <xacro:property name="camera_link" value="0.05" /> <!-- Size of square 'camera' box -->
+
+    <!-- robot -->
+    <xacro:macro name="chassis" params="">
+
+
+
+    <!--************* base_footprint urdf *************-->
+
+        <link name="base_footprint"/>
+        <!-- joint base_footprint to base_link-->
+        <joint name="base_footprint_to_base_link" type="fixed">
+            <parent link="base_footprint"/>
+            <child link="base_link"/>
+            <origin xyz="0.0 0.0 0.08" rpy="0.0 0.0 0.0"/>
+        </joint>
+
+        <link name="base_link">
+
+            <!-- physic parameter for Gazebo-->
+            <inertial>
+                <origin xyz="${CHASSIS_COM_XYZ}" rpy="0 0 0"/>
+                <mass value="${CHASSIS_M}"/>
+                <inertia ixx="${CHASSIS_IXX}" ixy="${CHASSIS_IXY}" ixz="${CHASSIS_IXZ}" iyy="${CHASSIS_IYY}" iyz="${CHASSIS_IYZ}" izz="${CHASSIS_IZZ}"/>
+            </inertial>
+
+            <!-- import chassis.STL file and set position-->
+            <visual>
+                <origin xyz="-0.08 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <mesh filename="package://robot_description/meshes/stl/chassis.STL"/>
+                    <!-- <box size="0.1 0.1 0.1"/> -->
+                </geometry>  
+            </visual>
+
+            <!-- add  collision-->
+            <collision>
+                <origin xyz="-0.08 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="0.26 0.26 0.08"/>
+                </geometry> 
+            </collision>   
+
+        </link>
+
+
+
+    <!--************* support_wheel_L urdf **************-->
+
+        <!--joint base_link_to_support_wheel left-->
+        <joint name="base_link_to_support_wheel_L" type="fixed">
+            <parent link="base_link"/>
+            <child link="support_wheel_link_L"/>
+            <origin xyz="-0.18 0.1 -0.06" rpy="${PI/2}  0.0 0.0"/>
+        </joint>
+
+        <link name="support_wheel_link_L">
+            <!-- physic parameter for Gazebo-->
+            <inertial>
+                <origin xyz="${S_WHEEL_COM_XYZ}" rpy="0 0 0"/>
+                <mass value="${S_WHEEL_M}"/>
+                <inertia ixx="${S_WHEEL_IXX}" ixy="${S_WHEEL_IXY}" ixz="${S_WHEEL_IXZ}" iyy="${S_WHEEL_IYY}" iyz="${S_WHEEL_IYZ}" izz="${S_WHEEL_IZZ}"/>
+            </inertial>
+
+            <!-- import support_wheel.STL file and set position-->    
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <mesh filename="package://robot_description/meshes/stl/support_wheel.STL"/>
+                </geometry>
+            </visual>
+            <!--add colition -->
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <mesh filename="package://robot_description/meshes/stl/support_wheel.STL"/>
+                    <!-- <sphere radius="0.02"/> -->
+                </geometry> 
+            </collision>
+
+        </link>
+
+
+    <!--************ support_wheel_R urdf*************-->
+
+        <!--joint base_link_to_support_wheel right-->
+        <joint name="base_link_to_support_wheel_R" type="fixed">
+            <parent link="base_link"/>
+            <child link="support_wheel_link_R"/>
+            <origin xyz="-0.18 -0.1 -0.06" rpy="${PI/2}  0.0 0.0"/>
+        </joint>
+
+        <link name="support_wheel_link_R">
+            <!-- physic parameter for Gazebo-->
+            <inertial>
+                <origin xyz="${S_WHEEL_COM_XYZ}" rpy="0 0 0"/>
+                <mass value="${S_WHEEL_M}"/>
+                <inertia ixx="${S_WHEEL_IXX}" ixy="${S_WHEEL_IXY}" ixz="${S_WHEEL_IXZ}" iyy="${S_WHEEL_IYY}" iyz="${S_WHEEL_IYZ}" izz="${S_WHEEL_IZZ}"/>
+            </inertial>
+            <!-- import support_wheel.STL file and set position-->  
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <mesh filename="package://robot_description/meshes/stl/support_wheel.STL"/>
+                </geometry>    
+            </visual>
+            <!--add colition -->
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <mesh filename="package://robot_description/meshes/stl/support_wheel.STL"/>
+                    <!-- <sphere radius="0.02"/> -->
+                </geometry> 
+            </collision> 
+            
+        </link>
+
+        
+    <!--*********** Camera ***********-->
+
+        <joint name="camera_joint" type="fixed">
+            <axis xyz="0 1 0" />
+            <origin xyz="0.05 0 0" rpy="0 0 0"/>
+            <parent link="base_link"/>
+            <child link="camera_link"/>
+        </joint>
+
+        <link name="camera_link">
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${camera_link} ${camera_link} ${camera_link}"/>
+                </geometry>
+            </collision>
+            
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${camera_link} ${camera_link} ${camera_link}"/>
+                </geometry>
+            </visual>
+            
+            <inertial>
+                <mass value="1e-5" />
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                    <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+            </inertial>
+        </link>
+
+    <!--*********** Hokuyo Laser ************-->
+
+    <link name="hokuyo_link">
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.1 0.1 0.1"/>
+            </geometry>
+        </collision>
+    
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://robot_description/meshes/hokuyo.dae"/>
+            </geometry>
+        </visual>
+    
+        <inertial>
+            <mass value="1e-5" />
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="1e-6" ixy="0" ixz="0" iyy="1e-6" iyz="0" izz="1e-6" />
+        </inertial>
+    </link>
+
+    <joint name="hokuyo_joint" type="fixed">
+        <axis xyz="0 1 0" />
+        <origin xyz="0 0 0.07" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="hokuyo_link"/>
+    </joint>
+
+
+    </xacro:macro>
+
+</robot>
