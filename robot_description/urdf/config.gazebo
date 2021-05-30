@@ -4,8 +4,10 @@
 <!--************* support_wheel_link_L ***************-->
 
     <gazebo reference="support_wheel_link_L">
+        <!-- friction force -->
         <mu1>0.2</mu1>
         <mu2>0.2</mu2>
+        <!-- material-->
         <material>
             Gazebo/White
         </material>
@@ -14,8 +16,10 @@
 <!--************* support_wheel_link_R ***************-->
 
     <gazebo reference="support_wheel_link_R">
+        <!-- friction force -->
         <mu1>0.6</mu1>
         <mu2>0.6</mu2>
+        <!-- material-->
         <material>
             Gazebo/White
         </material>
@@ -24,8 +28,10 @@
 <!--************* base_link ***************-->
 
     <gazebo reference="base_link">
+        <!-- friction force -->
         <mu1>0.6</mu1>
         <mu2>0.6</mu2>
+        <!-- material-->
         <material>
             Gazebo/Indigo 
         </material>
@@ -33,16 +39,20 @@
 
 
     <gazebo reference="left_wheel">
+        <!-- friction force -->
         <mu1>1.0</mu1>
         <mu2>1.0</mu2>
+        <!-- material-->
         <material>
             Gazebo/Turquoise 
         </material>
     </gazebo>
 
     <gazebo reference="right_wheel">
+        <!-- friction force -->
         <mu1>1.0</mu1>
         <mu2>1.0</mu2>
+        <!-- material-->
         <material>
             Gazebo/Turquoise 
         </material>

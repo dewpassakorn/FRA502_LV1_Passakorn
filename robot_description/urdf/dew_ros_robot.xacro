@@ -24,6 +24,7 @@
     rotation="${PI/2}  0 0"
     parent="base_link"/>
 
+    <!-- include gazebo data and plugin -->
     <xacro:include filename="$(find robot_description)/urdf/config.gazebo"/>
 
 

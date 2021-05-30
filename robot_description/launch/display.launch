@@ -1,13 +1,20 @@
 <?xml version="1.0"?>
 <launch>
+    <!-- enable joint_state_publisher_gui window-->
     <param name="use_gui" value="True"/>
+
+    <!-- import joint_state_publisher_gui node -->
     <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
     
+    <!-- import model-->
     <param name="robot_description" command="xacro --inorder '$(find robot_description)/urdf/dew_ros_robot.xacro'"/>
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+    
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/> -->
+
+    <!-- import robot_state_publisher node -->
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
     
-
+    <!-- open Rviz using setup template form rvis_setting.rviz-->
     <node name="rviz" pkg="rviz" type="rviz" args= "-d $(find robot_description)/rvis/rvis_setting.rviz"/>
     
     
